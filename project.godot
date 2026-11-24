@@ -22,7 +22,6 @@ GameEvents="*res://Source/Other/GameEvents.cs"
 [dotnet]
 
 project/assembly_name="SpecjalSurvivor"
-
 [input]
 
 "Move Left"={
