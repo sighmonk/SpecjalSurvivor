@@ -2,6 +2,10 @@
 Specjal Survivor to gra stworzona w celach edukacyjnych do prezentacji przygotowanej na Koło Naukowe Informatyków. Ma ona na celu przedstawić podstawowe funkcje silnika Godot Engine i zachęcić do tworzenia gier.
 
 Gra humorystycznie nawiązuje do stereotypowo nieodłącznego elementu życia studenckiego - piwa.
+
+# Wymagania
+- [Godot Engine 4.7.2 (.NET)](https://godotengine.org/download/) - wersja z obsługą C#
+- [.NET SDK 8.0](https://dotnet.microsoft.com/download) lub nowszy
 # Rozgrywka
 Gra polega na przetrwaniu jak najdłużej i pokonaniu jak największej ilości przeciwników. Od rozpoczęcia gry wokół gracza pojawiają się wrogowie. Gracz może chodzić (klawisze W, A, S, D), strzelać (za pomocą myszy) oraz robić unik (Spacja). Przeciwnik może zostać pokonany poprzez trafienie go pociskiem. Gdy zginie, licznik punktów się zwieksza. 
 
