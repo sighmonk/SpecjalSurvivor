@@ -11,9 +11,12 @@ public partial class HealthComponent : Node2D
 	public override void _Ready()
 	{
 		CurrentHealth = MaxHealth;
-		_healthBar = GetChild<ProgressBar>(0);
-		_healthBar.MaxValue = MaxHealth;
-		_healthBar.Value = CurrentHealth;
+		_healthBar = GetChildOrNull<ProgressBar>(0);
+		if (_healthBar != null)
+		{
+			_healthBar.MaxValue = MaxHealth;
+			_healthBar.Value = CurrentHealth;
+		}
 	}
 
 	public void Damage(float damage)
@@ -25,19 +28,24 @@ public partial class HealthComponent : Node2D
 		}
 		if (CurrentHealth <= 0)
 		{
-			var Parent = GetParent();
-			if (Parent is Neptun)
-			{
-				var gameEvents = GetNode<GameEvents>("/root/GameEvents");
-				gameEvents.EmitSignal(GameEvents.SignalName.EnemyKilled);
-				Parent.QueueFree();
+			Die();
+		}
+	}
 
-			}
-			if (Parent is Player)
-			{
-				var gameEvents = GetNode<GameEvents>("/root/GameEvents");
-				gameEvents.PlayerDied();
-			}
+	private void Die()
+	{
+		var gameEvents = GetNode<GameEvents>("/root/GameEvents");
+		Node owner = GetParent();
+
+		// o tym, kto to jest, decydują grupy - nie trzeba znać konkretnych klas
+		if (owner.IsInGroup("enemies"))
+		{
+			gameEvents.EmitSignal(GameEvents.SignalName.EnemyKilled);
+			owner.QueueFree();
+		}
+		else if (owner.IsInGroup("player"))
+		{
+			gameEvents.PlayerDied();
 		}
 	}
 }

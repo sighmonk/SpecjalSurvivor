@@ -16,6 +16,16 @@ public partial class KillCounter : Label
         UpdateKillCounter();
     }
 
+    public override void _ExitTree()
+    {
+        // GameEvents jest autoloadem, więc przeżywa restart sceny - trzeba się odpiąć
+        var gameEvents = GetNodeOrNull<GameEvents>("/root/GameEvents");
+        if (gameEvents != null)
+        {
+            gameEvents.EnemyKilled -= IncrementKillCount;
+        }
+    }
+
     public void IncrementKillCount()
     {
         killCount++;

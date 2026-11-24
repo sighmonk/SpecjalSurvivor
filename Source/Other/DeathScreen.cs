@@ -12,10 +12,6 @@ public partial class DeathScreen : CanvasLayer
 
     private void OnRestartButtonPressed()
     {
-		var gameEvents = GetNode<GameEvents>("/root/GameEvents");
-        var killCounter = GetTree().CurrentScene.GetNode<KillCounter>("/root/Level/CanvasLayer/KillCounter");
-        gameEvents.EnemyKilled -= killCounter.IncrementKillCount;
-
         GetTree().Paused = false;
         GetTree().ReloadCurrentScene();
     }

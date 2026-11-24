@@ -4,6 +4,7 @@ using System;
 public partial class Bullet : Area2D
 {
 	[Export] public Vector2 Velocity { get; set; } // Velocity of the bullet
+	[Export] public float Damage = 50f; // Damage dealt to whatever hitbox the bullet touches
 
     public override void _Process(double delta)
     {
@@ -15,7 +16,7 @@ public partial class Bullet : Area2D
 		if (area is HitboxComponent)
         {
             HitboxComponent hitbox = (HitboxComponent)area;
-            hitbox.Damage(50);
+            hitbox.Damage(Damage);
         }
 	}
     private void LifespanTimeout()
